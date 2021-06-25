@@ -4,7 +4,7 @@
 pacman -Syyu --noconfirm
 
 # check if jdk and jre exists, if not download
-if ! pacman -Qs jdk-openjdk > /dev/null && ! pacman -Qs jre-openjdk; then
+if ! pacman -Qs jdk-openjdk > /dev/null || ! pacman -Qs jre-openjdk > /dev/null; then
 	pacman -S jdk-openjdk jre-openjdk --noconfirm
 fi
 
