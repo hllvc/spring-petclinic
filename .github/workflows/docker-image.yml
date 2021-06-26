@@ -14,12 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Compile app
-      run: ./mvnw package
       
     - name: Build the Docker image
-      run: docker build -t PetClinic .
+      run: docker build -t petclinic .
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
@@ -28,4 +25,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         
     - name: Push to Docker Hub
-      run: docker push hllvc/spring-petclinic:PetClinic
+      run: docker push hllvc/spring-petclinic:petclinic
