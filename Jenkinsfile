@@ -24,7 +24,7 @@ pipeline {
 				withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
 					sh 'docker login -u $USER -p $PASS'
 				}
-				sh 'docker push hllvc/spring-petclinic'
+				sh 'docker push hllvc/spring-petclinic:jenkins'
 			}
 		}
 
