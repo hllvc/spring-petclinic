@@ -15,7 +15,7 @@ services:
   app:
     depends_on:
       - mysql
-    image: petclinic-run
+    image: hllvc/spring-petclinic
     links:
       - mysql:mysql
     ports:
