@@ -1,5 +1,11 @@
 pipeline {
 
+	environment {
+		registry = "hllvc/spring-petclinic"
+		registryCredential = 'dockerhub'
+		dockerImage = ''
+	}
+
 	agent any
 
 	stages {
@@ -18,9 +24,13 @@ pipeline {
 			}
 		}
 
-		stage('Run') {
+		stage('Push & Run App') {
 			steps {
-					sh 'docker build -f Dockerfile.run -t petclinic-run .'
+					withCredentials([usernamePassword(credentialsId: 'mycreds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+						sh 'docker login -u $USER -p $PASS'
+					}
+					sh 'docker build -f Dockerfile.run -t spring-petclinic .'
+					sh 'docker push hllvc/spring-petclinic'
 					sh 'docker-compose up -d'
 			}
 		}
