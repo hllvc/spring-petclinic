@@ -5,7 +5,7 @@ pipeline {
 	stages {
 		stage('Build Image') {
 			steps {
-				sh 'docker build -f Dockerfile.build -t petclinic-build'
+				sh 'docker build -f Dockerfile.build -t petclinic-build .'
 			}
 		}
 	}
