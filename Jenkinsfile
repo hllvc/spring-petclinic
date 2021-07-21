@@ -4,12 +4,6 @@ pipeline {
 
 	stages {
 
-		stage('Build Image') {
-			steps {
-					sh 'docker build -f Dockerfile.build -t petclinic-build .'
-			}
-		}
-
 		stage('Build App') {
 			steps {
 				sh 'docker run -v $HOME/.m2:/root/.m2 --name petclinic-build petclinic-build'
